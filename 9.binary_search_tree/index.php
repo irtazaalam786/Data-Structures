@@ -21,11 +21,13 @@ class BinarySearchTree{
                     $current = $current->left;
                     if($current == null){
                         $parent->left = $new_node;
+                        return;
                     }
                 }else if($key > $current->key){
                     $current = $current->right;
                     if($current == null){
                         $parent->right = $new_node;
+                        return;
                     }
                 }
             }
@@ -33,11 +35,24 @@ class BinarySearchTree{
 
 
     }
+
+    public function findMin(){
+        $current = $this->root;
+        $last = null;
+
+        while($current !=null){
+            $last = $current;
+            $current = $current->left;
+        }
+
+        return $last->key;
+    }
 }
 
 $bst = new BinarySearchTree();
 $bst->insert(10,'hello');
-// $bst->insert(20,'hello1');
-// $bst->insert(30,'hello2');
+$bst->insert(20,'hello1');
+$bst->insert(30,'hello2');
+echo $bst->findMin();
 
 ?>
